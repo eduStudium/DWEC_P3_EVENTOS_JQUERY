@@ -1,0 +1,58 @@
+//ejercicio2
+//ataque con granada
+var atacaGranada = Arma.prototype.atacar = function(objetivo) {
+	console.log('¡Zas! ' + jugador.nombre + ' ataca con ' + granada.nombre + ' y causa ' 
+	+ granada.potencia + ' puntos de daño a ' + objetivo.nombre);
+	console.log("Vida Zombie: ");
+	console.log(objetivo.vida = objetivo.vida - granada.potencia);
+	if(objetivo.vida <= 0) {
+		console.log("¡¡" + objetivo.nombre + " ha muerto!!")
+	}
+}
+//ataque con pistola
+ArmaConMunicion.prototype = Object.create(Arma.prototype);
+ArmaConMunicion.prototype.constructor = ArmaConMunicion.constructor;
+var atacaPistola = ArmaConMunicion.prototype.atacar = function(objetivo) {
+	if (pistola.municion > 0) {
+		pistola.municion--
+		if(objetivo.vida != 0) {
+			console.log('¡Bang! ' + jugador.nombre + ' causa ' + pistola.potencia + ' puntos de daño a ' + objetivo.nombre)
+			console.log("Vida Zombie: ");
+			console.log(objetivo.vida = objetivo.vida - pistola.potencia);	
+			console.log("Munición: ");
+			console.log(pistola.municion);
+			if(objetivo.vida <= 0) {
+				console.log("¡¡" + objetivo.nombre + " ha muerto!!")
+				objetivo.vida == 0;
+			}			
+		} else {
+			console.log(objetivo.nombre + " está muerto. Has perdido una bala.");
+		}
+	} else {
+		console.log('¡Click! ¡No queda munición!')
+	}
+}
+//ataque sin arma
+Persona.prototype = Object.create(Criatura.prototype);
+Persona.prototype.constructor = Persona.constructor;
+var atacarSinArma = Persona.prototype.atacar = function(objetivo) {
+	if(this.arma) {
+		this.arma.atacar(objetivo);
+	} else {
+		console.log('¡No se puede atacar porque no hay ningún arma equipada!')
+	}
+}	
+//ataques según elección usuario
+    var elemento = document.getElementById('test');
+    elemento.addEventListener('keypress', teclaPulsada);
+    function teclaPulsada(e) {
+        if(e.key=='d' && contador==0){ 
+			console.log(atacarSinArma());
+		}else if(e.key=='d' && armaGranada==true){
+                console.log(atacaGranada(z));	        	
+            }else if(e.key=='d' && armaGranada==false){
+                console.log(atacaPistola(z));		
+            } 
+    }
+
+  
