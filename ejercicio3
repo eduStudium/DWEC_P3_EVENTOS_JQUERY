@@ -1,0 +1,19 @@
+//ejercicio3
+//recarga de pistola
+var recargaPistola = ArmaConMunicion.prototype.recargar = function() {
+	pistola.municion = pistola.maxMunicion;
+    console.log(pistola.nombre + ' recargada')
+}
+
+var elemento = document.getElementById('test');
+elemento.addEventListener('keypress', teclaPulsada);
+function teclaPulsada(e) {
+if(e.key=='r' && contador==0){
+    console.log('Debe elegir la pistola para recargar');			
+    }else if(e.key=='r' && armaGranada==false){
+    console.log(recargaPistola(pistola));			
+        }else if(e.key=='r' && armaGranada==true){
+        console.log('Una granada no puede recargarse, seleccione la pistola');			
+        }
+    }
+//fin prĂ¡ctica
